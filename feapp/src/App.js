@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import About from './pages/About';
 import Result from './pages/Result';
+import Detail from './pages/Detail';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/result" element={<Result />} />
+            <Route path="/detail" element={<Detail />} />
           </Routes>
         </main>
       </div>
