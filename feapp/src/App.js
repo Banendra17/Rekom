@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import About from './pages/About';
-// import Contact from './pages/Contact';
+import Result from './pages/Result';
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/result" element={<Result />} />
           </Routes>
         </main>
       </div>
