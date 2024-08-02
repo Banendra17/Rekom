@@ -1,14 +1,16 @@
 // src/components/InputForm.jsx
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const InputForm = () => {
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Submitted value:', inputValue);
-    // Lakukan sesuatu dengan nilai input
+    navigate('/result'); // Navigate to the Result page
     setInputValue('');
   };
 
