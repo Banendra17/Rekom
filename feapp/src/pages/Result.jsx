@@ -1,44 +1,33 @@
 // src/pages/Result.jsx
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import ResultItem from '../components/ResultItem';
 
 const Result = () => {
-  const navigate = useNavigate();
-  
   const dummyResults = [
     {
-      title: "Benteng Lalala",
-      description: "Lorume fnaoetnuvihsirbyh uaoehfuo ajefnituhtfe e ta ae ae eatef aerfinbiahef eafaeefaef aefinbbnaefaefeaefeaeefsfa"
+      title: "Taman Sari",
+      description: "Taman Sari merupakan situs bekas taman atau kebun istana Keraton Yogyakarta yang juga dikenal sebagai Water Castle. Tempat ini terkenal dengan kolam pemandian, terowongan bawah tanah, dan masjid yang unik."
     },
     {
-      title: "Benteng Lalala",
-      description: "Lorume fnaoetnuvihsirbyh uaoehfuo ajefnituhtfe e ta ae ae eatef aerfinbiahef eafaeefaef aefinbbnaefaefeaefeaeefsfa"
+      title: "Candi Prambanan",
+      description: "Candi Prambanan adalah kompleks candi Hindu terbesar di Indonesia yang dipersembahkan untuk Trimurti, tiga dewa utama Hindu. Candi ini terkenal dengan arsitektur yang megah dan relief yang menggambarkan kisah Ramayana."
     },
     {
-      title: "Benteng Lalala",
-      description: "Lorume fnaoetnuvihsirbyh uaoehfuo ajefnituhtfe e ta ae ae eatef aerfinbiahef eafaeefaef aefinbbnaefaefeaefeaeefsfa"
+      title: "Pantai Parangtritis",
+      description: "Pantai Parangtritis adalah salah satu pantai yang paling terkenal di Yogyakarta. Pantai ini terkenal dengan ombaknya yang besar dan pemandangan matahari terbenam yang indah. Terdapat juga gumuk pasir yang menyerupai gurun kecil."
     }
   ];
-
-  const handleDetailsClick = () => {
-    navigate('/detail');
-  };
 
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Hasil Pencarian</h2>
       {dummyResults.map((result, index) => (
-        <div key={index} className="mb-4 p-4 border border-gray-300 rounded">
-          <h3 className="text-xl font-semibold">{result.title}</h3>
-          <p className="text-lg text-gray-700">{result.description}</p>
-          <button 
-            className="mt-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
-            onClick={handleDetailsClick}
-          >
-            Selengkapnya
-          </button>
-        </div>
+        <ResultItem 
+          key={index} 
+          title={result.title} 
+          description={result.description} 
+        />
       ))}
     </div>
   );
