@@ -2,7 +2,7 @@
 
 import React from 'react';
 import InputForm from '../components/InputForm';
-import Footer from '../components/Footer';
+
 
 const Home = () => {
   return (
@@ -12,7 +12,6 @@ const Home = () => {
           <InputForm />
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
