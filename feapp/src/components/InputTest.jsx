@@ -1,12 +1,9 @@
-// src/components/InputForm.jsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const InputForm = () => {
   const [inputValue, setInputValue] = useState('');
-  const [recommendations, setRecommendations] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -16,8 +13,9 @@ const InputForm = () => {
       const response = await axios.post('http://localhost:5000/recommend', {
         description: inputValue
       });
-      setRecommendations(response.data);  // Set hasil rekomendasi
-      navigate('/result'); // Pindah ke halaman hasil
+
+      // Arahkan ke halaman hasil dan kirim data rekomendasi melalui state
+      navigate('/resulttest', { state: { recommendations: response.data } });
     } catch (error) {
       console.error('Error fetching recommendations:', error);
     }
@@ -39,16 +37,6 @@ const InputForm = () => {
       >
         Submit
       </button>
-
-      {/* Tampilkan hasil rekomendasi */}
-      <div className="mt-4">
-        {recommendations.map((rec, index) => (
-          <div key={index} className="p-3 bg-gray-100 border border-gray-200 rounded-lg mb-2">
-            <h4>{rec.Place_Name}</h4>
-            <p>Similarity Score: {rec.Similarity_Score.toFixed(4)}</p>
-          </div>
-        ))}
-      </div>
     </form>
   );
 };
