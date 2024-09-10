@@ -11,7 +11,7 @@ const InputForm = () => {
     try {
       // Kirim request ke Flask API
       const response = await axios.post('http://localhost:5000/recommend', {
-        description: inputValue
+        description: inputValue,
       });
 
       // Arahkan ke halaman hasil dan kirim data rekomendasi melalui state
@@ -23,21 +23,27 @@ const InputForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center p-4 bg-white border border-gray-200 rounded-lg">
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Masukkan deskripsi museum"
-        className="p-3 mb-4 w-full text-lg border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-      />
-      <button
-        type="submit"
-        className="px-6 py-3 bg-blue-500 text-white text-lg rounded-lg hover:bg-blue-600 transition-colors"
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center w-full max-w-md p-8 bg-white rounded-lg shadow-md border border-gray-200"
       >
-        Submit
-      </button>
-    </form>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800">Cari Museum Rekomendasi</h2>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Masukkan deskripsi museum"
+          className="p-3 mb-4 w-full text-lg border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+        />
+        <button
+          type="submit"
+          className="w-full px-6 py-3 bg-blue-500 text-white text-lg rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 
