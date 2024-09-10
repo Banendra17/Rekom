@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Result from './pages/Result';
 import Detail from './pages/Detail';
+import ResulTestPages from './pages/ResultTestPages.jsx'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/detail" element={<Detail />} />
             <Route path="/resulttest" element={<ResultTest />} />
             <Route path="/inputtest" element={<InputTest />} />
+            <Route path="/resultpages" element={<ResulTestPages />} />
           </Routes>
         </main>
         <Footer />
