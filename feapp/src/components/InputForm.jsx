@@ -2,15 +2,25 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const InputForm = () => {
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Submitted value:', inputValue);
-    navigate('/result'); // Navigate to the Result page
+    try {
+      // Kirim request ke Flask API
+      const response = await axios.post('http://localhost:5000/recommend', {
+        description: inputValue,
+      });
+
+      // Arahkan ke halaman hasil dan kirim data rekomendasi melalui state
+      navigate('/resultpages', { state: { recommendations: response.data } });
+    } catch (error) {
+      console.error('Error fetching recommendations:', error);
+    }
     setInputValue('');
   };
 
