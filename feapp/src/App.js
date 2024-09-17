@@ -5,12 +5,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer'
 import ResultTest from './components/ResultTest.jsx'
-import InputTest from './components/InputTest.jsx'
 import Home from './pages/Home';
 import About from './pages/About';
 import Result from './pages/Result';
-import Detail from './pages/Detail';
+// import Detail from './pages/Detail';
 import ResulTestPages from './pages/ResultTestPages.jsx'
+import Detail from './pages/Detail'; // Halaman Detail
+
 
 const App = () => {
   return (
@@ -22,10 +23,10 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/result" element={<Result />} />
-            <Route path="/detail" element={<Detail />} />
+            {/* <Route path="/detail" element={<Detail />} /> */}
             <Route path="/resulttest" element={<ResultTest />} />
-            <Route path="/inputtest" element={<InputTest />} />
             <Route path="/resultpages" element={<ResulTestPages />} />
+            <Route path="/places/:id" element={<Detail />} /> {/* Route untuk halaman Detail berdasarkan ID */}
           </Routes>
         </main>
         <Footer />
