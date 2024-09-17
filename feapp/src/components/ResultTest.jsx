@@ -7,7 +7,7 @@ const ResultItem = ({ title, description }) => {
   const navigate = useNavigate();
 
   const handleDetailsClick = () => {
-    navigate('/detail');
+    navigate('/places/1');
   };
 
   return (
