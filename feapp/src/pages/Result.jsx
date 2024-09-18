@@ -1,7 +1,7 @@
 // src/pages/Result.jsx
 
 import React from 'react';
-import ResultItem from '../components/ResultItem';
+import ResultItem from '../components/ResultTest';
 
 const Result = () => {
   const dummyResults = [
