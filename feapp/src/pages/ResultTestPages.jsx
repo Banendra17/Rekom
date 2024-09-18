@@ -1,8 +1,9 @@
-// src/components/Result.jsx
+// src/pages/ResultTestPages.jsx
+
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import ResultItem from '../components/ResultTest';
+import ResultItem from '../components/ResultTest'; // Pastikan menggunakan ResultItem
 
 const Result = () => {
     // Mengambil rekomendasi yang dikirim melalui state
@@ -22,7 +23,8 @@ const Result = () => {
               <ResultItem 
                 key={index} 
                 title={rec.Place_Name} 
-                description={`Skor Kesamaan: ${rec.Similarity_Score.toFixed(4)}`} 
+                description={rec.Description} 
+                similarityScore={rec.Similarity_Score}
               />
             ))}
           </div>
@@ -33,4 +35,4 @@ const Result = () => {
     );
   };
   
-  export default Result;
+export default Result;
