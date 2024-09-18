@@ -26,7 +26,7 @@ const App = () => {
             {/* <Route path="/detail" element={<Detail />} /> */}
             <Route path="/resulttest" element={<ResultTest />} />
             <Route path="/resultpages" element={<ResulTestPages />} />
-            <Route path="/places/:id" element={<Detail />} /> {/* Route untuk halaman Detail berdasarkan ID */}
+            <Route path="/detail/:id" element={<Detail />} /> {/* Route untuk halaman Detail berdasarkan ID */}
           </Routes>
         </main>
         <Footer />
