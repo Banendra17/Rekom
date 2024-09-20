@@ -29,14 +29,14 @@ const Header = () => {
         </div>
         <nav>
           <ul className="flex space-x-2 sm:space-x-4">
-            <li>
+            {/* <li>
               <Link to="/" className="hover:underline text-sm sm:text-base">
                 Home
               </Link>
-            </li>
+            </li> */}
             <li>
-              <Link to="/about" className="hover:underline text-sm sm:text-base">
-                About
+              <Link to="/allplaces" className="hover:underline text-sm sm:text-base">
+                All Places
               </Link>
             </li>
           </ul>
