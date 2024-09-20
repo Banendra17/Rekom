@@ -35,10 +35,9 @@ const AllPlacesPage = () => {
           places.map((place, index) => (
             <ResultItem 
               key={index}
-              id={place.Place_Id} // Mengirim ID tempat wisata
               title={place.Place_Name}
               description={place.Description}
-              similarityScore={place.Similarity_Score} 
+              showSimilarityScore={false}
             />
           ))
         ) : (
