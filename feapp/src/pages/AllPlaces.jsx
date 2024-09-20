@@ -7,10 +7,9 @@ const AllPlacesPage = () => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fungsi untuk mengambil semua tempat wisata dari API
   const fetchAllPlaces = async () => {
     try {
-      const response = await fetch('http://localhost:5000/places'); // Endpoint baru untuk semua tempat
+      const response = await fetch('http://localhost:5000/places');
       const data = await response.json();
       setPlaces(data);
       setLoading(false);
@@ -20,7 +19,6 @@ const AllPlacesPage = () => {
     }
   };
 
-  // Panggil fungsi fetchAllPlaces ketika komponen pertama kali di-render
   useEffect(() => {
     fetchAllPlaces();
   }, []);
@@ -36,10 +34,11 @@ const AllPlacesPage = () => {
         {places.length > 0 ? (
           places.map((place, index) => (
             <ResultItem 
-              key={index} 
-              title={place.Place_Name} 
-              description={place.Description} 
-              similarityScore={place.Similarity_Score} // Nilai default atau score relevan
+              key={index}
+              id={place.Place_Id} // Mengirim ID tempat wisata
+              title={place.Place_Name}
+              description={place.Description}
+              similarityScore={place.Similarity_Score} 
             />
           ))
         ) : (
