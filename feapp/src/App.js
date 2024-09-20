@@ -26,7 +26,7 @@ const App = () => {
             <Route path="/result" element={<Result />} />
             <Route path="/resulttest" element={<ResultTest />} />
             <Route path="/resultpages" element={<ResulTestPages />} />
-            <Route path="/detail/:id" element={<Detail />} /> {/* Route untuk halaman Detail berdasarkan ID */}
+            <Route path="/detail/:slug" element={<Detail />} /> {/* Perbarui route menjadi slug */}
           </Routes>
         </main>
         <Footer />
