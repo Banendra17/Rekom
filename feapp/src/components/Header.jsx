@@ -25,15 +25,13 @@ const Header = () => {
               <FontAwesomeIcon icon={faArrowLeft} />
             </button>
           )}
-          <h1 className="text-lg sm:text-xl font-bold">My Website</h1>
+          {/* Wrap the h1 inside a Link component */}
+          <Link to="/" className="text-lg sm:text-xl font-bold hover:underline">
+            My Website
+          </Link>
         </div>
         <nav>
           <ul className="flex space-x-2 sm:space-x-4">
-            {/* <li>
-              <Link to="/" className="hover:underline text-sm sm:text-base">
-                Home
-              </Link>
-            </li> */}
             <li>
               <Link to="/allplaces" className="hover:underline text-sm sm:text-base">
                 All Places
