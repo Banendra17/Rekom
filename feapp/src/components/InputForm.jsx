@@ -30,7 +30,7 @@ const InputForm = () => {
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Masukkan nilai"
+        placeholder="Masukkan deskripsi yang diinginkan"
         className="p-3 mb-4 w-full text-lg border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
       />
       <button
