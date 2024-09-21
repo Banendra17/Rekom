@@ -15,11 +15,11 @@ const Detail = () => {
       .toString()
       .toLowerCase()
       .replace(/\s+/g, '-')        // Ganti spasi dengan tanda "-"
-      .replace(/[^\w\-]+/g, '')    // Hapus karakter non-word
-      .replace(/\-\-+/g, '-')      // Ganti banyak tanda "-" dengan satu "-"
+      .replace(/[^\w-]+/g, '')     // Hapus karakter non-word (escape character tidak diperlukan di sini)
+      .replace(/--+/g, '-')        // Ganti banyak tanda "-" dengan satu "-"
       .replace(/^-+/, '')          // Hapus tanda "-" di awal
       .replace(/-+$/, '');         // Hapus tanda "-" di akhir
-  };
+  };  
 
   useEffect(() => {
     // Parse CSV file using PapaParse
