@@ -15,7 +15,7 @@ const Detail = () => {
       .toString()
       .toLowerCase()
       .replace(/\s+/g, '-')        // Ganti spasi dengan tanda "-"
-      .replace(/[^\w-]+/g, '')     // Hapus karakter non-word (escape character tidak diperlukan di sini)
+      .replace(/[^\w-]+/g, '')     // Hapus karakter non-word
       .replace(/--+/g, '-')        // Ganti banyak tanda "-" dengan satu "-"
       .replace(/^-+/, '')          // Hapus tanda "-" di awal
       .replace(/-+$/, '');         // Hapus tanda "-" di akhir
@@ -49,17 +49,17 @@ const Detail = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 max-w-screen-lg mx-auto">
       <div className="mb-4">
         <img
           src="https://via.placeholder.com/400x200?text=Image+Not+Available" // Placeholder image
           alt={place.Place_Name}
-          className="w-full h-auto"
+          className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-md"
         />
       </div>
-      <div>
+      <div className="text-left">
         <h2 className="text-2xl font-bold mb-4">{place.Place_Name}</h2>
-        <p className="text-lg mb-4 text-justify">{place.Description}</p>
+        <p className="text-lg mb-4 text-justify leading-relaxed">{place.Description}</p>
       </div>
     </div>
   );
