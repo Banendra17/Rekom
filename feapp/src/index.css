@@ -4,8 +4,24 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-html, body {
-  @apply h-full m-0;
+html, body, #root, .App {
+  height: 100%;  /* Pastikan seluruh elemen menggunakan tinggi penuh */
+  margin: 0;     /* Hapus margin untuk mencegah adanya spasi */
 }
 
-/* Custom styles can be added here, if necessary */
+.App {
+  display: flex;              /* Gunakan flexbox untuk menyusun elemen secara vertikal */
+  flex-direction: column;
+}
+
+header {
+  flex-shrink: 0; /* Pastikan header tidak menyusut */
+}
+
+main {
+  flex-grow: 1;   /* Bagian main mengambil sisa ruang di antara header dan footer */
+}
+
+footer {
+  flex-shrink: 0; /* Pastikan footer tidak menyusut */
+}
