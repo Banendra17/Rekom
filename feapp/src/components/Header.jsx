@@ -14,26 +14,26 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-blue-500 text-white p-4">
+    <header className="bg-white shadow-md p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           {location.pathname !== '/' && (
             <button 
-              className="hover:underline text-sm sm:text-base bg-blue-700 px-2 py-1 rounded flex items-center mr-4"
+              className="text-blue-500 hover:bg-blue-100 transition-all duration-200 ease-in-out p-2 rounded-full flex items-center mr-4"
               onClick={handleBackClick}
             >
-              <FontAwesomeIcon icon={faArrowLeft} />
+              <FontAwesomeIcon icon={faArrowLeft} className="text-lg" />
             </button>
           )}
           {/* Wrap the h1 inside a Link component */}
-          <Link to="/" className="text-lg sm:text-xl font-bold hover:underline">
-            My Website
+          <Link to="/" className="text-2xl font-semibold text-gray-800 hover:text-blue-500 transition-colors duration-200 ease-in-out">
+            Rekom
           </Link>
         </div>
         <nav>
-          <ul className="flex space-x-2 sm:space-x-4">
+          <ul className="flex space-x-6">
             <li>
-              <Link to="/allplaces" className="hover:underline text-sm sm:text-base">
+              <Link to="/allplaces" className="text-gray-600 hover:text-blue-500 text-sm sm:text-base transition-colors duration-200 ease-in-out">
                 All Places
               </Link>
             </li>
