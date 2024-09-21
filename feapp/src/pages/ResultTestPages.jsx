@@ -1,18 +1,22 @@
 // src/pages/ResultTestPages.jsx
 
-
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ResultItem from '../components/ResultTest'; // Pastikan menggunakan ResultItem
 
 const Result = () => {
-    // Mengambil rekomendasi yang dikirim melalui state
     const location = useLocation();
+    const navigate = useNavigate();
+    
+    // Mengambil rekomendasi yang dikirim melalui state
     const { recommendations } = location.state || { recommendations: [] };
-  
-    // Ambil 3 rekomendasi dengan skor kesamaan tertinggi
-    const topRecommendations = recommendations.slice(0, 3);
-  
+
+    // Filter rekomendasi yang memiliki similarity score > 0
+    const filteredRecommendations = recommendations.filter(rec => rec.Similarity_Score > 0);
+
+    // Ambil rekomendasi teratas (maksimum 3)
+    const topRecommendations = filteredRecommendations.slice(0, 3);
+
     return (
       <div className="min-h-screen w-full flex flex-col items-center bg-gray-50 p-4">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">Hasil Rekomendasi</h2>
@@ -29,10 +33,17 @@ const Result = () => {
             ))}
           </div>
         ) : (
-          <p className="text-lg text-gray-700">Tidak ada rekomendasi yang cocok.</p>
+          <div className="text-center">
+            <p className="text-lg text-gray-700 mb-4">Tidak ada yang mirip.</p>
+            <button 
+              onClick={() => navigate(-1)} 
+              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+              Kembali
+            </button>
+          </div>
         )}
       </div>
     );
   };
-  
+
 export default Result;
