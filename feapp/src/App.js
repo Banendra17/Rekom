@@ -4,11 +4,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ResultTest from './components/ResultTest.jsx';
 import Home from './pages/Home';
-import AllPlaces from './pages/AllPlaces.jsx';
+import AllPlaces from './pages/AllPlaces';
 import About from './pages/About';
-import ResulTestPages from './pages/ResultTestPages.jsx';
+import Result from './pages/Result';
 import Detail from './pages/Detail';
 
 const App = () => {
@@ -21,9 +20,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/allplaces" element={<AllPlaces />} />
             <Route path="/about" element={<About />} />
-            <Route path="/resulttest" element={<ResultTest />} />
-            <Route path="/resultpages" element={<ResulTestPages />} />
-            <Route path="/detail/:slug" element={<Detail />} /> {/* Perbarui route menjadi slug */}
+            <Route path="/result" element={<Result />} />
+            <Route path="/detail/:slug" element={<Detail />} />
           </Routes>
         </main>
         <Footer />
