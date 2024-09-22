@@ -1,8 +1,8 @@
-// src/pages/ResultTestPages.jsx
+// src/pages/Result.jsx
 
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ResultItem from '../components/ResultTest'; // Pastikan menggunakan ResultItem
+import ResultItem from '../components/Item'; // Pastikan menggunakan ResultItem
 
 const Result = () => {
     const location = useLocation();

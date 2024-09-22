@@ -1,9 +1,9 @@
-// src/pages/AllPlacesPage.jsx
+// src/pages/AllPlaces.jsx
 
 import React, { useEffect, useState } from 'react';
-import ResultItem from '../components/ResultTest'; // Gunakan komponen yang sudah ada
+import ResultItem from '../components/Item'; // Gunakan komponen yang sudah ada
 
-const AllPlacesPage = () => {
+const AllPlaces = () => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -48,4 +48,4 @@ const AllPlacesPage = () => {
   );
 };
 
-export default AllPlacesPage;
+export default AllPlaces;

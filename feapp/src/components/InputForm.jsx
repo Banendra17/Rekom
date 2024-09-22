@@ -17,7 +17,7 @@ const InputForm = () => {
       });
 
       // Arahkan ke halaman hasil dan kirim data rekomendasi melalui state
-      navigate('/resultpages', { state: { recommendations: response.data } });
+      navigate('/result', { state: { recommendations: response.data } });
     } catch (error) {
       console.error('Error fetching recommendations:', error);
     }
