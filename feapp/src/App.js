@@ -9,6 +9,7 @@ import AllPlaces from './pages/AllPlaces';
 import About from './pages/About';
 import Result from './pages/Result';
 import Detail from './pages/Detail';
+import NearestPlaces from './pages/NearestPlace';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/allplaces" element={<AllPlaces />} />
             <Route path="/about" element={<About />} />
             <Route path="/result" element={<Result />} />
+            <Route path="/near" element={<NearestPlaces />} />
             <Route path="/detail/:slug" element={<Detail />} />
           </Routes>
         </main>
