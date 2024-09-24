@@ -45,7 +45,11 @@ const NearestPlaces = () => {
           }),
         });
         const data = await response.json();
-        setNearestPlaces(data.slice(0, 3)); // Tampilkan 3 tempat terdekat
+        
+        // Filter tempat wisata dengan jarak > 0 dan hanya tampilkan 3 tempat terdekat
+        const filteredPlaces = data.filter((place) => place.Distance > 0).slice(0, 3);
+        
+        setNearestPlaces(filteredPlaces); 
       } catch (err) {
         console.error('Error fetching nearest places:', err);
         setError('Gagal memuat tempat wisata terdekat');
