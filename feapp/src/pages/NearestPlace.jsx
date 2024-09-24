@@ -1,5 +1,3 @@
-// src/pages/NearestPlaces.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link dari react-router-dom
 
@@ -95,9 +93,9 @@ const NearestPlaces = () => {
         </select>
       </div>
 
-      <div className="w-full max-w-screen-lg">
-        <h3 className="text-xl font-semibold mb-4">3 Tempat Wisata Terdekat</h3>
-        {nearestPlaces.length > 0 ? (
+      {selectedPlace && nearestPlaces.length > 0 && (
+        <div className="w-full max-w-screen-lg">
+          <h3 className="text-xl font-semibold mb-4">3 Tempat Wisata Terdekat</h3>
           <ul className="space-y-4">
             {nearestPlaces.map((place, index) => (
               <li key={index} className="p-4 bg-white shadow-md rounded-lg">
@@ -108,10 +106,8 @@ const NearestPlaces = () => {
               </li>
             ))}
           </ul>
-        ) : (
-          <p className="text-gray-600">Pilih tempat wisata untuk melihat tempat terdekat.</p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
