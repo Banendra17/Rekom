@@ -1,5 +1,3 @@
-// src/components/Header.jsx
-
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,11 +28,23 @@ const Header = () => {
             Rekom
           </Link>
         </div>
+        
+        {/* Navigation Menu - Right Aligned */}
         <nav>
           <ul className="flex space-x-6">
             <li>
               <Link to="/allplaces" className="text-gray-600 hover:text-blue-500 text-sm sm:text-base transition-colors duration-200 ease-in-out">
                 All Places
+              </Link>
+            </li>
+            <li>
+              <Link to="/near" className="text-gray-600 hover:text-blue-500 text-sm sm:text-base transition-colors duration-200 ease-in-out">
+                Near
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-gray-600 hover:text-blue-500 text-sm sm:text-base transition-colors duration-200 ease-in-out">
+                About
               </Link>
             </li>
           </ul>
