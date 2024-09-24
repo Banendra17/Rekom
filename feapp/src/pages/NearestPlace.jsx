@@ -1,5 +1,7 @@
+// src/pages/NearestPlace.jsx
+
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link dari react-router-dom
+import { Link } from 'react-router-dom';
 
 const NearestPlaces = () => {
   const [places, setPlaces] = useState([]);
@@ -13,14 +15,14 @@ const NearestPlaces = () => {
     return text
       .toString()
       .toLowerCase()
-      .replace(/\s+/g, '-')        // Ganti spasi dengan tanda "-"
-      .replace(/[^\w-]+/g, '')     // Hapus karakter non-word
-      .replace(/--+/g, '-')        // Ganti banyak tanda "-" dengan satu "-"
-      .replace(/^-+/, '')          // Hapus tanda "-" di awal
-      .replace(/-+$/, '');         // Hapus tanda "-" di akhir
+      .replace(/\s+/g, '-')        // Replace spaces with "-"
+      .replace(/[^\w-]+/g, '')     // Remove non-word characters
+      .replace(/--+/g, '-')        // Replace multiple "-" with a single "-"
+      .replace(/^-+/, '')          // Trim "-" from start of text
+      .replace(/-+$/, '');         // Trim "-" from end of text
   };
 
-  // Fetch semua tempat wisata untuk dropdown
+  // Fetch places
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
@@ -38,7 +40,7 @@ const NearestPlaces = () => {
     fetchPlaces();
   }, []);
 
-  // Function untuk menangani pemilihan tempat wisata dari dropdown
+  // Handle place selection
   const handlePlaceSelect = async (event) => {
     const placeName = event.target.value;
     setSelectedPlace(placeName);
@@ -100,7 +102,9 @@ const NearestPlaces = () => {
             {nearestPlaces.map((place, index) => (
               <li key={index} className="p-4 bg-white shadow-md rounded-lg">
                 <Link to={`/detail/${slugify(place.Place_Name)}`}>
-                  <h4 className="text-lg font-bold">{place.Place_Name}</h4>
+                  <h4 className="text-lg font-bold text-gray-800 hover:text-blue-500 hover:bg-blue-100 transition-all duration-200 ease-in-out p-2 rounded-lg">
+                    {place.Place_Name}
+                  </h4>
                   <p className="text-gray-600">Jarak: {place.Distance.toFixed(2)} km</p>
                 </Link>
               </li>
