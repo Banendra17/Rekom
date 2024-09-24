@@ -1,6 +1,7 @@
 // src/pages/NearestPlaces.jsx
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link dari react-router-dom
 
 const NearestPlaces = () => {
   const [places, setPlaces] = useState([]);
@@ -8,6 +9,18 @@ const NearestPlaces = () => {
   const [nearestPlaces, setNearestPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  // Slugify function
+  const slugify = (text) => {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, '-')        // Ganti spasi dengan tanda "-"
+      .replace(/[^\w-]+/g, '')     // Hapus karakter non-word
+      .replace(/--+/g, '-')        // Ganti banyak tanda "-" dengan satu "-"
+      .replace(/^-+/, '')          // Hapus tanda "-" di awal
+      .replace(/-+$/, '');         // Hapus tanda "-" di akhir
+  };
 
   // Fetch semua tempat wisata untuk dropdown
   useEffect(() => {
@@ -45,11 +58,8 @@ const NearestPlaces = () => {
           }),
         });
         const data = await response.json();
-        
-        // Filter tempat wisata dengan jarak > 0 dan hanya tampilkan 3 tempat terdekat
         const filteredPlaces = data.filter((place) => place.Distance > 0).slice(0, 3);
-        
-        setNearestPlaces(filteredPlaces); 
+        setNearestPlaces(filteredPlaces);
       } catch (err) {
         console.error('Error fetching nearest places:', err);
         setError('Gagal memuat tempat wisata terdekat');
@@ -91,8 +101,10 @@ const NearestPlaces = () => {
           <ul className="space-y-4">
             {nearestPlaces.map((place, index) => (
               <li key={index} className="p-4 bg-white shadow-md rounded-lg">
-                <h4 className="text-lg font-bold">{place.Place_Name}</h4>
-                <p className="text-gray-600">Jarak: {place.Distance.toFixed(2)} km</p>
+                <Link to={`/detail/${slugify(place.Place_Name)}`}>
+                  <h4 className="text-lg font-bold">{place.Place_Name}</h4>
+                  <p className="text-gray-600">Jarak: {place.Distance.toFixed(2)} km</p>
+                </Link>
               </li>
             ))}
           </ul>
