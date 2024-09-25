@@ -87,7 +87,7 @@ const Detail = () => {
       {/* Bagian tempat wisata terdekat */}
       {nearestPlaces.length > 0 && (
         <div className="mt-8">
-          <h3 className="text-xl font-semibold mb-4">3 Tempat Wisata Terdekat</h3>
+          <h3 className="text-xl font-semibold mb-4">Tempat Wisata Terdekat</h3>
           <ul className="space-y-4">
             {nearestPlaces.map((place, index) => (
               <li key={index} className="p-4 bg-white shadow-md rounded-lg">
