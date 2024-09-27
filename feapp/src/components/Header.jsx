@@ -69,7 +69,7 @@ const Header = () => {
 
         {/* Dropdown menu for mobile */}
         {isOpen && (
-          <div className="absolute top-16 right-4 bg-white border border-gray-200 rounded-lg shadow-lg w-48 sm:hidden">
+          <div className="absolute top-16 right-4 bg-white border border-gray-200 rounded-lg shadow-lg w-48 sm:hidden z-50">
             <ul className="flex flex-col space-y-4 p-4">
               <li>
                 <Link 
