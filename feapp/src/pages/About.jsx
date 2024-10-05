@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className="p-4 max-w-screen-lg mx-auto">
       <div className="text-left">
-        <h2 className="text-2xl font-bold mb-4 text-center">Tentang Kami</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">About Us</h2>
         <p className="text-lg mb-4 text-justify leading-relaxed">
           Kami adalah platform yang didedikasikan untuk memberikan rekomendasi terbaik 
           mengenai tempat wisata di Yogyakarta. Misi kami adalah membantu wisatawan 
