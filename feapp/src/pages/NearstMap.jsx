@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const NearestMap = () => {
@@ -10,7 +10,7 @@ const NearestMap = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Slugify function
+  // Fungsi untuk membuat slug dari nama tempat
   const slugify = (text) => {
     return text
       .toString()
@@ -22,7 +22,7 @@ const NearestMap = () => {
       .replace(/-+$/, '');
   };
 
-  // Fetch places
+  // Fetch tempat wisata
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
@@ -40,7 +40,7 @@ const NearestMap = () => {
     fetchPlaces();
   }, []);
 
-  // Get current location using Geolocation API
+  // Mendapatkan lokasi saat ini dengan API Geolocation
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -60,7 +60,7 @@ const NearestMap = () => {
     }
   }, []);
 
-  // Fetch nearest places based on current location
+  // Fetch tempat wisata terdekat berdasarkan lokasi saat ini
   useEffect(() => {
     const fetchNearestPlaces = async () => {
       if (currentLocation) {
@@ -101,12 +101,28 @@ const NearestMap = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={[currentLocation.lat, currentLocation.lon]}>
+          
+          {/* Titik lokasi saat ini */}
+          <CircleMarker
+            center={[currentLocation.lat, currentLocation.lon]}
+            radius={10} // Ukuran titik lokasi pengguna
+            fillColor="red"
+            color="white"
+            fillOpacity={0.8}
+          >
             <Popup>Lokasi Anda Saat Ini</Popup>
-          </Marker>
+          </CircleMarker>
 
+          {/* Titik untuk tempat wisata terdekat */}
           {nearestPlaces.map((place, index) => (
-            <Marker key={index} position={[place.Lat, place.Long]}>
+            <CircleMarker
+              key={index}
+              center={[place.Lat, place.Long]}
+              radius={8} // Ukuran titik tempat wisata
+              fillColor="blue" // Warna titik tempat wisata
+              color="white"
+              fillOpacity={0.8}
+            >
               <Popup>
                 <Link to={`/detail/${slugify(place.Place_Name)}`}>
                   {place.Place_Name}
@@ -114,7 +130,7 @@ const NearestMap = () => {
                 <br />
                 Jarak: {place.Distance.toFixed(2)} km
               </Popup>
-            </Marker>
+            </CircleMarker>
           ))}
         </MapContainer>
       ) : (
