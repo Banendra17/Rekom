@@ -10,6 +10,7 @@ import About from './pages/About';
 import Result from './pages/Result';
 import Detail from './pages/Detail';
 import NearestPlaces from './pages/NearestPlace';
+import NearestMap from './pages/NearstMap'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/result" element={<Result />} />
             <Route path="/near" element={<NearestPlaces />} />
+            <Route path="/nearmap" element={<NearestMap />} />
             <Route path="/detail/:slug" element={<Detail />} />
           </Routes>
         </main>
