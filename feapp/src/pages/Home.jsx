@@ -2,6 +2,7 @@
 
 import React from 'react';
 import InputForm from '../components/InputForm';
+import homeimage from '../data/image.png'
 
 const Home = () => {
   return (
@@ -10,7 +11,7 @@ const Home = () => {
         <div className="w-full sm:w-2/3 lg:w-1/2">
           <div className="h-48 sm:h-64 overflow-hidden mb-4"> {/* Adjust height for mobile */}
             <img
-              src="https://via.placeholder.com/400x200"
+              src={homeimage}
               alt="Placeholder"
               className="w-full h-full object-cover"
             />
