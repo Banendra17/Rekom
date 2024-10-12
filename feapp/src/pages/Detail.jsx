@@ -1,7 +1,7 @@
-// src/pages/Detail.jsx
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const Detail = () => {
   const { slug } = useParams();
@@ -9,7 +9,6 @@ const Detail = () => {
   const [loading, setLoading] = useState(true);
   const [nearestPlaces, setNearestPlaces] = useState([]);
 
-  // Fungsi untuk membuat slug dari nama tempat
   const slugify = (text) => {
     return text
       .toString()
@@ -21,7 +20,6 @@ const Detail = () => {
       .replace(/-+$/, '');
   };
 
-  // Fetch detail tempat dan tempat terdekat
   const fetchPlaceDetail = useCallback(async () => {
     try {
       const response = await fetch('http://localhost:5000/places');
@@ -31,7 +29,6 @@ const Detail = () => {
       setPlace(selectedPlace);
 
       if (selectedPlace) {
-        // Fetch tempat terdekat menggunakan lat dan long dari tempat yang dipilih
         const distanceResponse = await fetch('http://localhost:5000/distance', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -42,7 +39,6 @@ const Detail = () => {
         });
 
         const nearestData = await distanceResponse.json();
-        console.log('Nearest places:', nearestData); // Log untuk memeriksa data yang diterima
         const filteredNearestPlaces = nearestData.filter((p) => p.Distance > 0).slice(0, 3);
         setNearestPlaces(filteredNearestPlaces);
       }
@@ -54,24 +50,20 @@ const Detail = () => {
     }
   }, [slug]);
 
-  // Jalankan fetch saat komponen dimount
   useEffect(() => {
     fetchPlaceDetail();
   }, [fetchPlaceDetail]);
 
-  // Jika masih loading
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Jika tempat tidak ditemukan
   if (!place) {
     return <div>Tempat wisata tidak ditemukan.</div>;
   }
 
   return (
     <div className="p-4 max-w-screen-lg mx-auto">
-      {/* Bagian gambar dan deskripsi tempat wisata */}
       <div className="mb-4">
         <img
           src={place.ImageURL || "https://via.placeholder.com/400x200?text=Image+Not+Available"}
@@ -82,6 +74,28 @@ const Detail = () => {
       <div className="text-left">
         <h2 className="text-2xl font-bold mb-4">{place.Place_Name}</h2>
         <p className="text-lg mb-4 text-justify leading-relaxed">{place.Description}</p>
+      </div>
+
+      {/* Peta tempat wisata */}
+      <div className="mt-8">
+        <h3 className="text-xl font-semibold mb-4">Lokasi Tempat Wisata</h3>
+        <MapContainer center={[place.Lat, place.Long]} zoom={13} className="w-full h-96 mb-6 z-10">
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          
+          {/* Menggunakan CircleMarker sebagai titik */}
+          <CircleMarker
+            center={[place.Lat, place.Long]}
+            radius={10} // ukuran titik
+            fillColor="blue" // warna titik
+            color="blue" // warna tepi titik
+            fillOpacity={0.8} // tingkat transparansi titik
+          >
+            <Popup>{place.Place_Name}</Popup>
+          </CircleMarker>
+        </MapContainer>
       </div>
 
       {/* Bagian tempat wisata terdekat */}
@@ -103,7 +117,6 @@ const Detail = () => {
         </div>
       )}
 
-      {/* Tampilkan pesan jika tidak ada tempat wisata terdekat */}
       {nearestPlaces.length === 0 && (
         <p className="text-red-500">Tidak ada tempat wisata terdekat yang ditemukan.</p>
       )}
