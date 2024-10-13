@@ -96,7 +96,7 @@ const NearestMap = () => {
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
       {currentLocation ? (
-        <MapContainer center={[currentLocation.lat, currentLocation.lon]} zoom={13} className="w-full h-96 mb-6 z-10">
+        <MapContainer center={[currentLocation.lat, currentLocation.lon]} zoom={13} className="w-full h-96 max-w-screen-lg mb-6 z-10">
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
