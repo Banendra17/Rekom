@@ -1,13 +1,14 @@
 // src/pages/Detail.jsx
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 
 const Detail = () => {
   const { slug } = useParams();
+  const location = useLocation(); // Tambahkan useLocation untuk mendeteksi perubahan rute
   const [place, setPlace] = useState(null);
   const [loading, setLoading] = useState(true);
   const [nearestPlaces, setNearestPlaces] = useState([]);
@@ -52,6 +53,11 @@ const Detail = () => {
   useEffect(() => {
     fetchPlaceDetail();
   }, [fetchPlaceDetail]);
+
+  // Scroll restoration setiap kali lokasi berubah
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]); // Jalankan efek ini ketika lokasi berubah
 
   if (loading) {
     return <div>Loading...</div>;
