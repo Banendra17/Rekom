@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Import axios
 import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -26,9 +27,8 @@ const NearestMap = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await fetch('http://localhost:5000/places');
-        const data = await response.json();
-        setPlaces(data);
+        const response = await axios.get('http://localhost:5000/places');
+        setPlaces(response.data);
         setLoading(false);
       } catch (err) {
         console.error('Error fetching places:', err);
@@ -65,16 +65,11 @@ const NearestMap = () => {
     const fetchNearestPlaces = async () => {
       if (currentLocation) {
         try {
-          const response = await fetch('http://localhost:5000/distance', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              lat: currentLocation.lat,
-              lon: currentLocation.lon,
-            }),
+          const response = await axios.post('http://localhost:5000/distance', {
+            lat: currentLocation.lat,
+            lon: currentLocation.lon,
           });
-          const data = await response.json();
-          const filteredPlaces = data.filter((place) => place.Distance > 0).slice(0, 3);
+          const filteredPlaces = response.data.filter((place) => place.Distance > 0).slice(0, 3);
           setNearestPlaces(filteredPlaces);
         } catch (err) {
           console.error('Error fetching nearest places:', err);
@@ -101,7 +96,7 @@ const NearestMap = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          
+
           {/* Titik lokasi saat ini */}
           <CircleMarker
             center={[currentLocation.lat, currentLocation.lon]}
