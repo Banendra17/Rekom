@@ -6,7 +6,7 @@ import homeimage from '../data/image.png'
 
 const Home = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-[100%]">
       <div className="flex-grow flex flex-col justify-center items-center p-4">
         <div className="w-full sm:w-2/3 lg:w-1/2">
           <div className="h-48 sm:h-64 overflow-hidden mb-4"> {/* Adjust height for mobile */}
