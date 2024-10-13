@@ -1,6 +1,9 @@
+// src/pages/Detail.jsx
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 
 const Detail = () => {
@@ -22,23 +25,19 @@ const Detail = () => {
 
   const fetchPlaceDetail = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:5000/places');
-      const data = await response.json();
+      const response = await axios.get('http://localhost:5000/places');
+      const data = response.data;
 
       const selectedPlace = data.find((place) => slugify(place.Place_Name) === slug);
       setPlace(selectedPlace);
 
       if (selectedPlace) {
-        const distanceResponse = await fetch('http://localhost:5000/distance', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lat: selectedPlace.Lat,
-            lon: selectedPlace.Long,
-          }),
+        const distanceResponse = await axios.post('http://localhost:5000/distance', {
+          lat: selectedPlace.Lat,
+          lon: selectedPlace.Long,
         });
 
-        const nearestData = await distanceResponse.json();
+        const nearestData = distanceResponse.data;
         const filteredNearestPlaces = nearestData.filter((p) => p.Distance > 0).slice(0, 3);
         setNearestPlaces(filteredNearestPlaces);
       }
