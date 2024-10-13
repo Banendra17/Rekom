@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const NearestPlaces = () => {
   const [places, setPlaces] = useState([]);
@@ -26,9 +27,8 @@ const NearestPlaces = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await fetch('http://localhost:5000/places');
-        const data = await response.json();
-        setPlaces(data);
+        const response = await axios.get('http://localhost:5000/places');
+        setPlaces(response.data);
         setLoading(false);
       } catch (err) {
         console.error('Error fetching places:', err);
@@ -49,16 +49,11 @@ const NearestPlaces = () => {
 
     if (selected) {
       try {
-        const response = await fetch('http://localhost:5000/distance', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lat: selected.Lat,
-            lon: selected.Long,
-          }),
+        const response = await axios.post('http://localhost:5000/distance', {
+          lat: selected.Lat,
+          lon: selected.Long,
         });
-        const data = await response.json();
-        const filteredPlaces = data.filter((place) => place.Distance > 0).slice(0, 3);
+        const filteredPlaces = response.data.filter((place) => place.Distance > 0).slice(0, 3);
         setNearestPlaces(filteredPlaces);
       } catch (err) {
         console.error('Error fetching nearest places:', err);
