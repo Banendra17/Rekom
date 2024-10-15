@@ -17,13 +17,6 @@ const About = () => {
           rekomendasi kami dirancang untuk memastikan Anda memiliki pengalaman yang tak terlupakan.
         </p>
       </div>
-      <div className="mt-4">
-        <img 
-          src="https://via.placeholder.com/400x200?text=Image+Not+Available" 
-          alt="Tentang Kami" 
-          className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-md" 
-        />
-      </div>
     </div>
   );
 };
