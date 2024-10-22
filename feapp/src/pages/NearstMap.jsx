@@ -69,7 +69,9 @@ const NearestMap = () => {
             lat: currentLocation.lat,
             lon: currentLocation.lon,
           });
-          const filteredPlaces = response.data.filter((place) => place.Distance > 0).slice(0, 3);
+          const filteredPlaces = response.data
+            .filter((place) => place.Distance > 0)
+            .slice(0, 3);
           setNearestPlaces(filteredPlaces);
         } catch (err) {
           console.error('Error fetching nearest places:', err);
@@ -87,11 +89,17 @@ const NearestMap = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gray-50 p-4">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Tempat Wisata Terdekat dari Lokasi Anda</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+        Tempat Wisata Terdekat dari Lokasi Anda
+      </h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
       {currentLocation ? (
-        <MapContainer center={[currentLocation.lat, currentLocation.lon]} zoom={13} className="w-full h-96 max-w-screen-lg mb-6 z-10">
+        <MapContainer
+          center={[currentLocation.lat, currentLocation.lon]}
+          zoom={13}
+          className="w-full h-96 max-w-screen-lg mb-6 z-10"
+        >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -100,7 +108,7 @@ const NearestMap = () => {
           {/* Titik lokasi saat ini */}
           <CircleMarker
             center={[currentLocation.lat, currentLocation.lon]}
-            radius={10} // Ukuran titik lokasi pengguna
+            radius={10}
             fillColor="red"
             color="white"
             fillOpacity={0.8}
@@ -113,8 +121,8 @@ const NearestMap = () => {
             <CircleMarker
               key={index}
               center={[place.Lat, place.Long]}
-              radius={8} // Ukuran titik tempat wisata
-              fillColor="blue" // Warna titik tempat wisata
+              radius={8}
+              fillColor="blue"
               color="white"
               fillOpacity={0.8}
             >
@@ -142,7 +150,9 @@ const NearestMap = () => {
                   <h4 className="text-lg font-bold text-gray-800 hover:text-blue-500 hover:bg-blue-100 transition-all duration-200 ease-in-out p-2 rounded-lg">
                     {place.Place_Name}
                   </h4>
-                  <p className="text-gray-600">Jarak: {place.Distance.toFixed(2)} km</p>
+                  <p className="text-gray-600">
+                    Jarak: {place.Distance.toFixed(2)} km
+                  </p>
                 </Link>
               </li>
             ))}
