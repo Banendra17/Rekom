@@ -40,24 +40,38 @@ const NearestMap = () => {
     fetchPlaces();
   }, []);
 
-  // Mendapatkan lokasi saat ini dengan API Geolocation
+  // Mendapatkan lokasi terbaru dengan API Geolocation dan watchPosition
   useEffect(() => {
+    let geoWatch;
+
+    const updateLocation = (position) => {
+      setCurrentLocation({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+      });
+    };
+
+    const handleError = (err) => {
+      console.error('Error getting location:', err);
+      setError('Gagal mendapatkan lokasi');
+    };
+
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setCurrentLocation({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-          });
-        },
-        (err) => {
-          console.error('Error getting location:', err);
-          setError('Gagal mendapatkan lokasi');
-        }
-      );
+      geoWatch = navigator.geolocation.watchPosition(updateLocation, handleError, {
+        enableHighAccuracy: true, // Menggunakan akurasi tinggi
+        maximumAge: 0, // Jangan menggunakan cache
+        timeout: 5000, // Waktu timeout jika gagal
+      });
     } else {
       setError('Geolocation tidak didukung oleh browser ini');
     }
+
+    // Cleanup untuk menghentikan watchPosition saat komponen unmount
+    return () => {
+      if (geoWatch) {
+        navigator.geolocation.clearWatch(geoWatch);
+      }
+    };
   }, []);
 
   // Fetch tempat wisata terdekat berdasarkan lokasi saat ini
