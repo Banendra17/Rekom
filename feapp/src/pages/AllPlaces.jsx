@@ -9,7 +9,7 @@ const AllPlaces = () => {
 
   const fetchAllPlaces = async () => {
     try {
-      const response = await fetch('http://localhost:5000/places');
+      const response = await fetch('https://banen.onrender.com/places');
       const data = await response.json();
       setPlaces(data);
       setLoading(false);
