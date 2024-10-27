@@ -33,15 +33,15 @@ const Home = () => {
           <div className="flex space-x-4 mt-4 w-full">
             <button
               onClick={goToAllPlaces}
-              className="w-1/2 py-3 bg-green-500 text-white text-lg rounded-lg hover:bg-green-600 transition-colors"
+              className="w-1/2 py-3 bg-blue-500 text-white text-lg rounded-lg hover:bg-blue-600 transition-colors"
             >
-              Lihat Semua Tempat
+              Semua Tempat
             </button>
             <button
               onClick={goToNearestMap}
-              className="w-1/2 py-3 bg-yellow-500 text-white text-lg rounded-lg hover:bg-yellow-600 transition-colors"
+              className="w-1/2 py-3 bg-blue-500 text-white text-lg rounded-lg hover:bg-blue-600 transition-colors"
             >
-              Peta Tempat Terdekat
+              Tempat Terdekat
             </button>
           </div>
         </div>
