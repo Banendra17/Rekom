@@ -27,7 +27,7 @@ const NearestMap = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/places');
+        const response = await axios.get('https://banen.onrender.com/places');
         setPlaces(response.data);
         setLoading(false);
       } catch (err) {
@@ -79,7 +79,7 @@ const NearestMap = () => {
     const fetchNearestPlaces = async () => {
       if (currentLocation) {
         try {
-          const response = await axios.post('http://localhost:5000/distance', {
+          const response = await axios.post('https://banen.onrender.com/distance', {
             lat: currentLocation.lat,
             lon: currentLocation.lon,
           });
