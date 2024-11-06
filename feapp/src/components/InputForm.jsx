@@ -11,7 +11,7 @@ const InputForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('https://banen.onrender.com/recommend', {
+      const response = await axios.post('https://rekombex.onrender.com/recommend', {
         description: inputValue,
       });
       navigate('/result', { state: { recommendations: response.data } });
