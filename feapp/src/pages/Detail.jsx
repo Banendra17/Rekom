@@ -26,14 +26,14 @@ const Detail = () => {
 
   const fetchPlaceDetail = useCallback(async () => {
     try {
-      const response = await axios.get('https://banen.onrender.com/places');
+      const response = await axios.get('https://rekombex.onrender.com/places');
       const data = response.data;
 
       const selectedPlace = data.find((place) => slugify(place.Place_Name) === slug);
       setPlace(selectedPlace);
 
       if (selectedPlace) {
-        const distanceResponse = await axios.post('https://banen.onrender.com/distance', {
+        const distanceResponse = await axios.post('https://rekombex.onrender.com/distance', {
           lat: selectedPlace.Lat,
           lon: selectedPlace.Long,
         });
