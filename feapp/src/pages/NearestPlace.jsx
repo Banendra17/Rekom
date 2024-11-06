@@ -27,7 +27,7 @@ const NearestPlaces = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get('https://banen.onrender.com/places');
+        const response = await axios.get('https://rekombex.onrender.com/places');
         setPlaces(response.data);
         setLoading(false);
       } catch (err) {
@@ -49,7 +49,7 @@ const NearestPlaces = () => {
 
     if (selected) {
       try {
-        const response = await axios.post('https://banen.onrender.com/distance', {
+        const response = await axios.post('https://rekombex.onrender.com/distance', {
           lat: selected.Lat,
           lon: selected.Long,
         });
