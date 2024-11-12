@@ -51,7 +51,7 @@ const Header = () => {
           <ul className="flex space-x-6">
             <li>
               <Link to="/allplaces" className="text-gray-600 hover:text-blue-500 text-sm sm:text-base transition-colors duration-200 ease-in-out">
-                All Places
+                Semua Tempat
               </Link>
             </li>
             <li>
@@ -77,7 +77,7 @@ const Header = () => {
                   className="text-gray-600 hover:text-blue-500 text-base transition-colors duration-200 ease-in-out"
                   onClick={toggleMenu}
                 >
-                  All Places
+                  Semua Tempat
                 </Link>
               </li>
               <li>
