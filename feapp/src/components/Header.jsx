@@ -56,7 +56,7 @@ const Header = () => {
             </li>
             <li>
               <Link to="/nearmap" className="text-gray-600 hover:text-blue-500 text-sm sm:text-base transition-colors duration-200 ease-in-out">
-                Near
+                Tempat Terdekat
               </Link>
             </li>
             <li>
@@ -86,7 +86,7 @@ const Header = () => {
                   className="text-gray-600 hover:text-blue-500 text-base transition-colors duration-200 ease-in-out"
                   onClick={toggleMenu}
                 >
-                  Near
+                  Tempat Terdekat
                 </Link>
               </li>
               <li>
